@@ -336,24 +336,13 @@ function CategoryMenu() {
     <div className={css.menu}>
       <div className={css.menu__wrapper}>
         <div className={css.menu__section}>
-          <div className={css.nav}>
-            <div className={css.nav__item}>
-              <UserIcon />
-            </div>
-            <div className={css.nav__right}>
-              <div className={`${css.nav__item} ${css.nav__search}`}>
-                <SearchIcon />
-              </div>
-              <div className={css.nav__item}>
-                <CartIcon />
-              </div>
-            </div>
-          </div>
           <div className={css.categorylist}>
             {list1.map((category) => (
               <div
                 className={css.category}
-                onClick={() => category.list && category1ClickHandler(category.list)}
+                onClick={() =>
+                  category.list && category1ClickHandler(category.list)
+                }
               >
                 {category.name}
                 <span className={css.category__icon}>
@@ -370,7 +359,9 @@ function CategoryMenu() {
               {list2.map((category: CategoryItem) => (
                 <div
                   className={css.category}
-                  onClick={() => category.list && category2ClickHandler(category.list)}
+                  onClick={() =>
+                    category.list && category2ClickHandler(category.list)
+                  }
                 >
                   {category.name}
                   <span className={css.category__icon}>
@@ -387,17 +378,11 @@ function CategoryMenu() {
           <div className={css.menu__section}>
             <div className={css.sub_categorylist}>
               {list3.map((category: CategoryItem) => (
-                <div className={css.category}>
-                  {category.name}
-                  <span className={css.category__icon}>
-                    <ChevronRightIcon />
-                  </span>
-                </div>
+                <div className={css.category}>{category.name}</div>
               ))}
             </div>
           </div>
         )}
-        
       </div>
     </div>
   );
