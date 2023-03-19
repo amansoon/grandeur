@@ -26,8 +26,8 @@
     flex-direction: column;
     gap: 0.8rem;
     padding: 8rem 0rem 2rem;
-    background-color: rgb(21, 21, 21);
-    border-left: 1px solid black;
+    background-color: rgb(242, 242, 242);
+    border-left: 1px solid rgb(219, 219, 219);
 }
 
 .category {
@@ -35,8 +35,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.8rem 4rem;
-    font-size: 2rem;
-    color: rgb(240, 240, 240);
+    font-size: 1.8rem;
+    color: rgb(28, 28, 28);
     cursor: pointer;
 }
 

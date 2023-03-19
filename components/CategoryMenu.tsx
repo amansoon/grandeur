@@ -323,26 +323,32 @@ function CategoryMenu() {
   const [list2, setList2] = useState<Array<CategoryItem>>();
   const [list3, setList3] = useState<Array<CategoryItem>>();
 
-  const category1ClickHandler = (list: Array<CategoryItem>) => {
-    setList3(undefined);
-    setList2(list);
+  const [firstCategory, setFirstCategory] = useState<CategoryItem>();
+  const [secondCategory, setSecondCategory] = useState<CategoryItem>();
+
+
+  const firstCategoryHandler = (category: CategoryItem) => {
+    setFirstCategory(category);
+    setSecondCategory(undefined);
   };
 
-  const category2ClickHandler = (list: Array<CategoryItem>) => {
-    setList3(list);
+  const secondCategoryHandler = (category: CategoryItem) => {
+    setSecondCategory(category);
   };
+
 
   return (
     <div className={css.menu}>
       <div className={css.menu__wrapper}>
         <div className={css.menu__section}>
+          <div className={css.menu__header}> 
+             
+          </div>
           <div className={css.categorylist}>
             {list1.map((category) => (
               <div
                 className={css.category}
-                onClick={() =>
-                  category.list && category1ClickHandler(category.list)
-                }
+                onClick={() => firstCategoryHandler(category)}
               >
                 {category.name}
                 <span className={css.category__icon}>
@@ -353,15 +359,13 @@ function CategoryMenu() {
           </div>
         </div>
 
-        {list2 && (
+        {firstCategory && (
           <div className={css.menu__section}>
             <div className={css.sub_categorylist}>
-              {list2.map((category: CategoryItem) => (
+              {firstCategory?.list?.map((category: CategoryItem) => (
                 <div
                   className={css.category}
-                  onClick={() =>
-                    category.list && category2ClickHandler(category.list)
-                  }
+                  onClick={() => secondCategory
                 >
                   {category.name}
                   <span className={css.category__icon}>
@@ -374,10 +378,10 @@ function CategoryMenu() {
           </div>
         )}
 
-        {list3 && (
+        {secondCategory && (
           <div className={css.menu__section}>
             <div className={css.sub_categorylist}>
-              {list3.map((category: CategoryItem) => (
+              {secondCategory.list?.map((category: CategoryItem) => (
                 <div className={css.category}>{category.name}</div>
               ))}
             </div>
