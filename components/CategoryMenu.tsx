@@ -326,7 +326,6 @@ function CategoryMenu() {
   const [firstCategory, setFirstCategory] = useState<CategoryItem>();
   const [secondCategory, setSecondCategory] = useState<CategoryItem>();
 
-
   const firstCategoryHandler = (category: CategoryItem) => {
     setFirstCategory(category);
     setSecondCategory(undefined);
@@ -336,58 +335,53 @@ function CategoryMenu() {
     setSecondCategory(category);
   };
 
-
   return (
     <div className={css.menu}>
-      <div className={css.menu__wrapper}>
+      <div className={css.menu__section}>
+        <div className={css.menu__header}></div>
+        <div className={css.categorylist}>
+          {list1.map((category) => (
+            <div
+              className={css.category}
+              onClick={() => firstCategoryHandler(category)}
+            >
+              {category.name}
+              <span className={css.category__icon}>
+                <ChevronRightIcon />
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {firstCategory && (
         <div className={css.menu__section}>
-          <div className={css.menu__header}> 
-             
-          </div>
-          <div className={css.categorylist}>
-            {list1.map((category) => (
+          <div className={css.sub_categorylist}>
+            {firstCategory?.list?.map((category: CategoryItem) => (
               <div
                 className={css.category}
-                onClick={() => firstCategoryHandler(category)}
+                onClick={() => secondCategoryHandler(category)}
               >
                 {category.name}
                 <span className={css.category__icon}>
-                  <ChevronRightIcon />
+                  {" "}
+                  <ChevronRightIcon />{" "}
                 </span>
               </div>
             ))}
           </div>
         </div>
+      )}
 
-        {firstCategory && (
-          <div className={css.menu__section}>
-            <div className={css.sub_categorylist}>
-              {firstCategory?.list?.map((category: CategoryItem) => (
-                <div
-                  className={css.category}
-                  onClick={() => secondCategory
-                >
-                  {category.name}
-                  <span className={css.category__icon}>
-                    {" "}
-                    <ChevronRightIcon />{" "}
-                  </span>
-                </div>
-              ))}
-            </div>
+      {secondCategory && (
+        <div className={css.menu__section}>
+          <div className={css.sub_categorylist}>
+            {secondCategory.list?.map((category: CategoryItem) => (
+              <div className={css.category}>{category.name}</div>
+            ))}
           </div>
-        )}
-
-        {secondCategory && (
-          <div className={css.menu__section}>
-            <div className={css.sub_categorylist}>
-              {secondCategory.list?.map((category: CategoryItem) => (
-                <div className={css.category}>{category.name}</div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
